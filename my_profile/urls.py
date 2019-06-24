@@ -24,6 +24,8 @@ from django.views.generic import TemplateView
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('resume/', TemplateView.as_view(template_name="resume/index.html")),
+    url(r'^weblog/', include('zinnia.urls')),
+    url(r'^comments/', include('django_comments.urls')),
 ]
 
 blog_urls = ([
