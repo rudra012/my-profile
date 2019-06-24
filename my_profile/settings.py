@@ -31,6 +31,7 @@ DEBUG = True
 
 INSTALLED_APPS = [
     'django.contrib.admin',
+    'django.contrib.sites',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
@@ -40,6 +41,12 @@ INSTALLED_APPS = [
     # http://whitenoise.evans.io/en/stable/django.html#using-whitenoise-in-development
     'whitenoise.runserver_nostatic',
     'django.contrib.staticfiles',
+
+    # http://docs.django-blog-zinnia.com/en/develop/getting-started/install.html
+    'django_comments',
+    'mptt',
+    'tagging',
+    'zinnia',
 ]
 
 MIDDLEWARE = [
@@ -66,6 +73,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'zinnia.context_processors.version',
             ],
             'debug': DEBUG,
         },
@@ -134,6 +142,8 @@ STATICFILES_DIRS = [
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 MEDIA_URL = '/media/'
+
+SITE_ID = 1
 
 # Activate Django-Heroku.
 django_heroku.settings(locals())

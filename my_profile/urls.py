@@ -15,14 +15,34 @@ Including another URLconf
 """
 
 from django.conf import settings
+from django.conf.urls import url
 from django.conf.urls.static import static
 from django.contrib import admin
-from django.urls import path
+from django.urls import path, include
 from django.views.generic import TemplateView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('resume/', TemplateView.as_view(template_name="resume/index.html")),
 ]
+
+blog_urls = ([
+    url(r'^', include('zinnia.urls.capabilities')),
+    url(r'^search/', include('zinnia.urls.search')),
+    url(r'^sitemap/', include('zinnia.urls.sitemap')),
+    url(r'^trackback/', include('zinnia.urls.trackback')),
+    url(r'^tags/', include('zinnia.urls.tags')),
+    url(r'^feeds/', include('zinnia.urls.feeds')),
+    url(r'^random/', include('zinnia.urls.random')),
+    url(r'^authors/', include('zinnia.urls.authors')),
+    url(r'^categories/', include('zinnia.urls.categories')),
+    url(r'^comments/', include('zinnia.urls.comments')),
+    url(r'^', include('zinnia.urls.entries')),
+    url(r'^', include('zinnia.urls.archives')),
+    url(r'^', include('zinnia.urls.shortlink')),
+    url(r'^', include('zinnia.urls.quick_entry'))
+], 'zinnia')
+urlpatterns += [url(r'^blog/', include(blog_urls)),]
+
 urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
