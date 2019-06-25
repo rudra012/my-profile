@@ -10,13 +10,13 @@ https://docs.djangoproject.com/en/2.0/ref/settings/
 """
 
 import os
+
 import dj_database_url
 import django_heroku
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 PROJECT_ROOT = os.path.dirname(os.path.abspath(__file__))
-
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/2.0/howto/deployment/checklist/
@@ -47,6 +47,11 @@ INSTALLED_APPS = [
     'mptt',
     'tagging',
     'zinnia',
+
+    # https://django-ckeditor.readthedocs.io/en/latest/
+    'ckeditor',
+
+    'zinnia_ckeditor',
 ]
 
 MIDDLEWARE = [
@@ -81,7 +86,6 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'my_profile.wsgi.application'
-
 
 # Database
 # https://docs.djangoproject.com/en/2.0/ref/settings/#databases
@@ -144,6 +148,31 @@ STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 MEDIA_URL = '/media/'
 
 SITE_ID = 1
+
+# CKEDITOR Configuration
+CKEDITOR_CONFIGS = {
+    'default': {
+        'toolbar': 'Full',
+    },
+    'zinnia-content': {
+        'toolbar_Zinnia': [
+            ['Cut', 'Copy', 'Paste', 'PasteText', 'PasteFromWord'],
+            ['Undo', 'Redo'],
+            ['Scayt'],
+            ['Link', 'Unlink', 'Anchor'],
+            ['Image', 'Table', 'HorizontalRule', 'SpecialChar'],
+            ['Source'],
+            ['Maximize'],
+            '/',
+            ['Bold', 'Italic', 'Underline', 'Strike',
+             'Subscript', 'Superscript', '-', 'RemoveFormat'],
+            ['NumberedList', 'BulletedList', '-',
+             'Outdent', 'Indent', '-', 'Blockquote'],
+            ['Styles', 'Format'],
+        ],
+        'toolbar': 'Zinnia',
+    },
+}
 
 # Activate Django-Heroku.
 django_heroku.settings(locals())

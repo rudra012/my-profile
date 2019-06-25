@@ -43,7 +43,7 @@ blog_urls = ([
     url(r'^', include('zinnia.urls.archives')),
     url(r'^', include('zinnia.urls.shortlink')),
     url(r'^', include('zinnia.urls.quick_entry'))
-], 'zinnia')
+], 'zinnia_blog')
 urlpatterns += [url(r'^blog/', include(blog_urls)),]
 
 urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
