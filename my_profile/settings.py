@@ -52,6 +52,7 @@ INSTALLED_APPS = [
     'ckeditor',
 
     'zinnia_ckeditor',
+    'portfolio',
 ]
 
 MIDDLEWARE = [

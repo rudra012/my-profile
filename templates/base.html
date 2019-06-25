@@ -1,0 +1,194 @@
+<!doctype html>
+{% load static %}
+
+<html lang="en">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1, shrink-to-fit=no"
+          name="viewport">
+    <link href="img/favicon.png" rel="icon" type="image/png">
+    <title>Shailesh Rudra - MeetMe</title>
+    <title>{% block title %}Shailesh Rudra - MeetMe{% endblock title %}
+        {% block title-page %}{% endblock title-page %}</title>
+    <!-- Bootstrap CSS -->
+    <link href="{% static 'home/css/bootstrap.css' %}" rel="stylesheet">
+    <link href="{% static 'home/vendors/linericon/style.css' %}"
+          rel="stylesheet">
+    <link href="{% static 'home/css/font-awesome.min.css' %}" rel="stylesheet">
+    <link href="{% static 'home/vendors/owl-carousel/owl.carousel.min.css' %}"
+          rel="stylesheet">
+    <link href="{% static 'home/vendors/lightbox/simpleLightbox.css' %}"
+          rel="stylesheet">
+    <link href="{% static 'home/vendors/nice-select/css/nice-select.css' %}"
+          rel="stylesheet">
+    <link href="{% static 'home/vendors/animate-css/animate.css' %}"
+          rel="stylesheet">
+    <link href="{% static 'home/vendors/popup/magnific-popup.css' %}"
+          rel="stylesheet">
+    <link href="{% static 'home/vendors/flaticon/flaticon.css' %}"
+          rel="stylesheet">
+    <!-- main css -->
+    <link href="{% static 'home/css/style.css' %}" rel="stylesheet">
+    <link href="{% static 'home/css/responsive.css' %}" rel="stylesheet">
+
+    {% block extrahead %}
+    {% endblock extrahead %}
+
+</head>
+<body>
+
+<!--================Header Menu Area =================-->
+<header class="header_area">
+    <div class="main_menu">
+        <nav class="navbar navbar-expand-lg navbar-light">
+            <div class="container box_1620">
+                <!-- Brand and toggle get grouped for better mobile display -->
+                <a class="navbar-brand logo_h" href="/">
+                    <img alt="" src="{% static 'images/Shailesh-logo.png' %}"
+                         style="height: 65px;"></a>
+                <button aria-controls="navbarSupportedContent"
+                        aria-expanded="false"
+                        aria-label="Toggle navigation"
+                        class="navbar-toggler"
+                        data-target="#navbarSupportedContent"
+                        data-toggle="collapse" type="button">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <!-- Collect the nav links, forms, and other content for toggling -->
+                <div class="collapse navbar-collapse offset"
+                     id="navbarSupportedContent">
+                    <ul class="nav navbar-nav menu_nav ml-auto">
+                        <li class="nav-item active">
+                            <a class="nav-link" href="/">Home</a>
+                        </li>
+                        <!-- <li class="nav-item"><a class="nav-link"
+                                                href="about-us.html">About</a>
+                        </li>
+                        <li class="nav-item"><a class="nav-link"
+                                                href="contact.html">Contact</a>
+                        </li>
+                        <li class="nav-item"><a class="nav-link"
+                                                href="services.html">Services</a>
+                        </li>
+                        <li class="nav-item submenu dropdown">
+                            <a aria-expanded="false" aria-haspopup="true"
+                               class="nav-link dropdown-toggle"
+                               data-toggle="dropdown"
+                               href="#"
+                               role="button">Pages</a>
+                            <ul class="dropdown-menu">
+                                <li class="nav-item"><a class="nav-link"
+                                                        href="portfolio.html">Portfolio</a>
+                                </li>
+                                <li class="nav-item"><a class="nav-link"
+                                                        href="elements.html">Elements</a>
+                                </li>
+                            </ul>
+                        </li> -->
+                        <li class="nav-item">
+                            <a class="nav-link" href="/blog/">Blog</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/resume/" target="_blank">Resume</a>
+                        </li>
+
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </div>
+</header>
+<!--================Header Menu Area =================-->
+
+{% block body_content %}
+{% endblock body_content %}
+
+<!--================Footer Area =================-->
+<footer class="footer_area p_120">
+    <div class="container">
+        <div class="row footer_inner">
+            <div class="col-lg-5 col-sm-6">
+                <aside class="f_widget ab_widget">
+                    <div class="f_title">
+                        <h3>About Me</h3>
+                    </div>
+                    <p>Do you want to be even more successful? Learn to love
+                        learning and growth. The more effort you put into
+                        improving your skills,</p>
+                    <p>
+                        <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                        Copyright &copy;<script>
+                        document.write(new Date().getFullYear());
+
+                    </script>
+                        <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                    </p>
+                </aside>
+            </div>
+            <div class="col-lg-5 col-sm-6">
+                <aside class="f_widget news_widget">
+                    <div class="f_title">
+                        <h3>Newsletter</h3>
+                    </div>
+                    <p>Stay updated with our latest trends</p>
+                    <!--<div id="mc_embed_signup">
+                        <form action="" class="subscribe_form relative"
+                              method="get" target="_blank">
+                            <div class="input-group d-flex flex-row">
+                                <input name="EMAIL"
+                                       onblur="this.placeholder = 'Email Address '"
+                                       onfocus="this.placeholder = ''"
+                                       placeholder="Enter email address"
+                                       required="" type="email">
+                                <button class="btn sub-btn"><span
+                                        class="lnr lnr-arrow-right"></span>
+                                </button>
+                            </div>
+                            <div class="mt-10 info"></div>
+                        </form>
+                    </div>-->
+                </aside>
+            </div>
+            <div class="col-lg-2">
+                <aside class="f_widget social_widget">
+                    <div class="f_title">
+                        <h3>Follow Me</h3>
+                    </div>
+                    <p>Let us be social</p>
+                    <ul class="list">
+                        <li><a href="https://github.com/rudra012"><i class="fa fa-github"></i></a></li>
+                        <li><a href="https://in.linkedin.com/in/rudra12shailesh"><i class="fa fa-linkedin"></i></a></li>
+                        <li><a href="https://www.facebook.com/rudra12shailesh"><i class="fa fa-facebook"></i></a></li>
+                        <li><a href="https://twitter.com/rudra012"><i class="fa fa-twitter"></i></a></li>
+                    </ul>
+                </aside>
+            </div>
+        </div>
+    </div>
+</footer>
+<!--================End Footer Area =================-->
+<!-- Optional JavaScript -->
+<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+<script src="{% static 'home/js/jquery-3.3.1.min.js' %}"></script>
+<script src="{% static 'home/js/popper.js' %}"></script>
+<script src="{% static 'home/js/bootstrap.min.js' %}"></script>
+<script src="{% static 'home/js/stellar.js' %}"></script>
+<script src="{% static 'home/vendors/lightbox/simpleLightbox.min.js' %}"></script>
+<script src="{% static 'home/vendors/nice-select/js/jquery.nice-select.min.js' %}"></script>
+<script src="{% static 'home/vendors/isotope/imagesloaded.pkgd.min.js' %}"></script>
+<script src="{% static 'home/vendors/isotope/isotope.pkgd.min.js' %}"></script>
+<script src="{% static 'home/vendors/owl-carousel/owl.carousel.min.js' %}"></script>
+<script src="{% static 'home/vendors/popup/jquery.magnific-popup.min.js' %}"></script>
+<script src="{% static 'home/js/jquery.ajaxchimp.min.js' %}"></script>
+<script src="{% static 'home/vendors/counter-up/jquery.waypoints.min.js' %}"></script>
+<script src="{% static 'home/vendors/counter-up/jquery.counterup.min.js' %}"></script>
+<script src="{% static 'home/js/mail-script.js' %}"></script>
+<script src="{% static 'home/js/theme.js' %}"></script>
+
+{% block footer_js %}
+{% endblock footer_js %}
+</body>
+</html>

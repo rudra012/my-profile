@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block page_content %}
+<h1>{{ project.title }}</h1>
+<div class="row">
+    <div class="col-md-8">
+        {% for image in project.images.all %}
+            <img alt="" src="{{ image.image.url }}" width="100%">
+        {% endfor %}
+    </div>
+    <div class="col-md-4">
+        <h5>About the project:</h5>
+        <p>{{ project.description }}</p>
+        <br>
+        <h5>Technology used:</h5>
+        {% for technology in project.technologies.all %}
+            <p>{{ technology.title }}</p>
+        {% endfor %}
+    </div>
+</div>
+
+{% endblock %}

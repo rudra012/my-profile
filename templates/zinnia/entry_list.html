@@ -1,0 +1,129 @@
+{% extends "zinnia/base.html" %}
+{% load i18n %}
+{% load zinnia %}
+
+{% block meta-description %}{% spaceless %}
+{% if category %}
+{% if category.description %}
+{{ category.description|striptags|safe }}
+{% else %}
+{% blocktrans with object=category %}The last entries categorized under {{ object }}{% endblocktrans %}
+{% endif %}
+{% endif %}
+
+{% if tag %}
+{% blocktrans with object=tag %}The last entries tagged with {{ object }}{% endblocktrans %}
+{% endif %}
+
+{% if author %}
+{% blocktrans with object=author %}The last entries by {{ object }}{% endblocktrans %}
+{% endif %}
+
+{% endspaceless %}{% endblock meta-description %}
+
+{% block meta-description-page %}{% if page_obj %}{% ifnotequal page_obj.number 1 %} {% blocktrans with page_number=page_obj.number %}page {{ page_number }}{% endblocktrans %}{% endifnotequal %}{% endif %}{% endblock meta-description-page %}
+
+{% block title %}{% spaceless %}
+{% if category %}
+{% blocktrans with object=category %}Category {{ object }}{% endblocktrans %}
+{% endif %}
+
+{% if tag %}
+{% blocktrans with object=tag %}Tag {{ object }}{% endblocktrans %}
+{% endif %}
+
+{% if author %}
+{% blocktrans with object=author %}Author {{ object }}{% endblocktrans %}
+{% endif %}
+
+{% endspaceless %}{% endblock title %}
+
+{% block title-page %}{% if page_obj %}{% ifnotequal page_obj.number 1 %} - {% blocktrans with object=page_obj.number %}Page {{ object }}{% endblocktrans %}{% endifnotequal %}{% endif %}{% endblock title-page %}
+
+{% block link %}
+  {{ block.super }}
+  {% if category %}
+    <link rel="alternate" type="application/rss+xml" title="{% blocktrans with object=category %}RSS feed of {{ object }}{% endblocktrans %}" href="{% url 'zinnia:category_feed' category.tree_path %}" />
+  {% endif %}
+  {% if tag %}
+    <link rel="alternate" type="application/rss+xml" title="{% blocktrans with object=tag %}RSS feed of {{ object }}{% endblocktrans %}" href="{% url 'zinnia:tag_feed' tag.name %}" />
+  {% endif %}
+  {% if author %}
+    <link rel="alternate" type="application/rss+xml" title="{% blocktrans with object=author %}RSS feed of {{ object }}{% endblocktrans %}" href="{% url 'zinnia:author_feed' author.get_username %}" />
+  {% endif %}
+{% endblock link %}
+
+{% block body-class %}entry-list{% if page_obj %} paginated page-{{ page_obj.number }}{% endif %}{% if category %} category category-{{ category.slug }}{% endif %}{% if tag %} tag tag-{{ tag|slugify }}{% endif %}{% if author %} author author-{{ author|slugify }}{% endif %}{% endblock body-class %}
+
+{% block content %}
+
+{% for object in object_list %}
+
+<article class="row blog_item">
+    <div class="col-md-3">
+        <div class="blog_info text-right">
+            <div class="post_tag">
+                <!-- <a class="active" href="#">Technology,</a> -->
+                {% for cat in object.categories.all %}
+                    <a href="#">{{ cat.title }}</a>
+                {% endfor %}
+            </div>
+            <ul class="blog_meta list">
+                <li><a href="javascript:void(0)">
+                {% for author in object.authors.all %}
+                  <span class="vcard author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+                    <a href="{{ author.get_absolute_url }}" class="fn url{% if not author.get_full_name %} nickname{% endif %}" rel="author"
+                       title="{% blocktrans %}Show all {{ author }}'s entries{% endblocktrans %}" itemprop="url">{{ author }}</a></span>{% if not forloop.last %}, {% endif %}
+                {% endfor %}
+                <i class="lnr lnr-user"></i></a></li>
+                <li><a href="#">{{ object.publication_date|date:"M d, Y" }}<i
+                        class="lnr lnr-calendar-full"></i></a>
+                </li>
+                <!--<li><a href="#">1.2M Views<i
+                        class="lnr lnr-eye"></i></a></li>-->
+                <li><a href="#">{{ object.comment_count }} Comments<i
+                        class="lnr lnr-bubble"></i></a></li>
+            </ul>
+        </div>
+    </div>
+    <div class="col-md-9">
+        <div class="blog_post">
+            <img alt=""
+                 src="img/blog/main-blog/m-blog-1.jpg">
+            <div class="blog_details">
+                <a href="single-blog.html">
+                <h2>{{ object.title }}</h2></a>
+                <p>{{ object.html_preview|safe }}</p>
+                <a class="white_bg_btn"
+                   href="{{ object.short_url }}">View More</a>
+            </div>
+        </div>
+    </div>
+</article>
+{% endfor %}
+
+{% endblock content %}
+
+{% block admin-tools %}
+  {% if category and perms.zinnia.change_category %}
+  <li>
+    <a href="{% url 'admin:zinnia_category_change' category.pk %}" title="{% trans "Edit the category" %}">
+      {% trans "Edit the category" %}
+    </a>
+  </li>
+  {% endif %}
+  {% if tag and perms.tagging.change_tag %}
+  <li>
+    <a href="{% url 'admin:tagging_tag_change' tag.pk %}" title="{% trans "Edit the tag" %}">
+      {% trans "Edit the tag" %}
+    </a>
+  </li>
+  {% endif %}
+  {% if author and perms.auth.change_user %}
+  <li>
+    <a href="{% url 'change'|user_admin_urlname author.pk %}" title="{% trans "Edit the author" %}">
+      {% trans "Edit the author" %}
+    </a>
+  </li>
+  {% endif %}
+{% endblock admin-tools %}

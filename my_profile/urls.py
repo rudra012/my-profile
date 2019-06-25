@@ -21,11 +21,15 @@ from django.contrib import admin
 from django.urls import path, include
 from django.views.generic import TemplateView
 
+from . import views
+
 urlpatterns = [
-    path('admin/', admin.site.urls),
-    path('resume/', TemplateView.as_view(template_name="resume/index.html")),
     url(r'^weblog/', include('zinnia.urls')),
     url(r'^comments/', include('django_comments.urls')),
+    path('admin/', admin.site.urls),
+    path('resume/', TemplateView.as_view(template_name="resume/index.html")),
+    path('projects/', include("portfolio.urls")),
+    path("", views.home, name="home"),
 ]
 
 blog_urls = ([

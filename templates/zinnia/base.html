@@ -1,11 +1,303 @@
-{% extends "zinnia/skeleton.html" %}
+{% extends "base.html" %}
 {% load i18n %}
 {% load zinnia %}
+
+{% block body_content %}
+
+<!--================Home Banner Area =================-->
+<section class="home_banner_area blog_banner">
+    <div class="banner_inner d-flex align-items-center">
+        <div class="overlay bg-parallax" data-background=""
+             data-stellar-ratio="0.9" data-stellar-vertical-offset="0"></div>
+        <div class="container">
+            <div class="blog_b_text text-center">
+                <h2>Dude You’re Getting <br/> a Telescope</h2>
+                <p>There is a moment in the life of any aspiring astronomer that
+                    it is time to buy that first</p>
+                <!--                <a class="white_bg_btn" href="#">View More</a>-->
+            </div>
+        </div>
+    </div>
+</section>
+<!--================End Home Banner Area =================-->
+
+<!--================Blog Categories Area =================-->
+<section class="blog_categorie_area">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-4">
+                <div class="categories_post">
+                    <img alt="post" src="img/blog/cat-post/cat-post-3.jpg">
+                    <div class="categories_details">
+                        <div class="categories_text">
+                            <a href="blog-details.html"><h5>Social Life</h5></a>
+                            <div class="border_line"></div>
+                            <p>Enjoy your social life together</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4">
+                <div class="categories_post">
+                    <img alt="post" src="img/blog/cat-post/cat-post-2.jpg">
+                    <div class="categories_details">
+                        <div class="categories_text">
+                            <a href="blog-details.html"><h5>Politics</h5></a>
+                            <div class="border_line"></div>
+                            <p>Be a part of politics</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4">
+                <div class="categories_post">
+                    <img alt="post" src="img/blog/cat-post/cat-post-1.jpg">
+                    <div class="categories_details">
+                        <div class="categories_text">
+                            <a href="blog-details.html"><h5>Food</h5></a>
+                            <div class="border_line"></div>
+                            <p>Let the food be finished</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!--================Blog Categories Area =================-->
+
+<!--================Blog Area =================-->
+<section class="blog_area">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8">
+                <div class="blog_left_sidebar">
+                    {% block content %}
+                    {% endblock content %}
+
+                    {% block content-pagination %}
+                        {% if is_paginated %}
+                          {% zinnia_pagination page_obj %}
+                        {% endif %}
+                    {% endblock content-pagination %}
+
+                    <nav class="blog-pagination justify-content-center d-flex">
+                        <ul class="pagination">
+                            <li class="page-item">
+                                <a aria-label="Previous" class="page-link"
+                                   href="#">
+		                                    <span aria-hidden="true">
+		                                        <span class="lnr lnr-chevron-left"></span>
+		                                    </span>
+                                </a>
+                            </li>
+                            <li class="page-item"><a class="page-link" href="#">01</a>
+                            </li>
+                            <li class="page-item active">
+                                <a class="page-link"href="#">02</a>
+                            </li>
+                            <li class="page-item">
+                                <a aria-label="Next" class="page-link" href="#">
+                                    <span aria-hidden="true">
+                                        <span class="lnr lnr-chevron-right"></span>
+                                    </span>
+                                </a>
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+            <div class="col-lg-4">
+                <div class="blog_right_sidebar">
+                    <aside class="single_sidebar_widget search_widget">
+                        <div class="input-group">
+                            <input class="form-control"
+                                   placeholder="Search Posts"
+                                   type="text">
+                            <span class="input-group-btn">
+                                        <button class="btn btn-default"
+                                                type="button"><i
+                                                class="lnr lnr-magnifier"></i></button>
+                                    </span>
+                        </div><!-- /input-group -->
+                        <div class="br"></div>
+                    </aside>
+                    <aside class="single_sidebar_widget author_widget">
+                        <img alt=""
+                             class="author_img rounded-circle"
+                             src="img/blog/author.png">
+                        <h4>Charlie Barber</h4>
+                        <p>Senior blog writer</p>
+                        <div class="social_icon">
+                            <a href="#"><i class="fa fa-facebook"></i></a>
+                            <a href="#"><i class="fa fa-twitter"></i></a>
+                            <a href="#"><i class="fa fa-github"></i></a>
+                            <a href="#"><i class="fa fa-behance"></i></a>
+                        </div>
+                        <p>Boot camps have its supporters andit sdetractors.
+                            Some people do not understand why you should have to
+                            spend money on boot camp when you can get. Boot
+                            camps have itssuppor ters andits detractors.</p>
+                        <div class="br"></div>
+                    </aside>
+                    <aside class="single_sidebar_widget popular_post_widget">
+                        <h3 class="widget_title">Popular Posts</h3>
+                        <div class="media post_item">
+                            <img alt="post"
+                                 src="img/blog/popular-post/post1.jpg">
+                            <div class="media-body">
+                                <a href="blog-details.html"><h3>Space The Final
+                                    Frontier</h3></a>
+                                <p>02 Hours ago</p>
+                            </div>
+                        </div>
+                        <div class="media post_item">
+                            <img alt="post"
+                                 src="img/blog/popular-post/post2.jpg">
+                            <div class="media-body">
+                                <a href="blog-details.html"><h3>The Amazing
+                                    Hubble</h3></a>
+                                <p>02 Hours ago</p>
+                            </div>
+                        </div>
+                        <div class="media post_item">
+                            <img alt="post"
+                                 src="img/blog/popular-post/post3.jpg">
+                            <div class="media-body">
+                                <a href="blog-details.html"><h3>Astronomy Or
+                                    Astrology</h3></a>
+                                <p>03 Hours ago</p>
+                            </div>
+                        </div>
+                        <div class="media post_item">
+                            <img alt="post"
+                                 src="img/blog/popular-post/post4.jpg">
+                            <div class="media-body">
+                                <a href="blog-details.html"><h3>Asteroids
+                                    telescope</h3></a>
+                                <p>01 Hours ago</p>
+                            </div>
+                        </div>
+                        <div class="br"></div>
+                    </aside>
+                    <aside class="single_sidebar_widget ads_widget">
+                        <a href="#"><img alt=""
+                                         class="img-fluid"
+                                         src="img/blog/add.jpg"></a>
+                        <div class="br"></div>
+                    </aside>
+                    <aside class="single_sidebar_widget post_category_widget">
+                        <h4 class="widget_title">Post Catgories</h4>
+                        <ul class="list cat-list">
+                            <li>
+                                <a class="d-flex justify-content-between"
+                                   href="#">
+                                    <p>Technology</p>
+                                    <p>37</p>
+                                </a>
+                            </li>
+                            <li>
+                                <a class="d-flex justify-content-between"
+                                   href="#">
+                                    <p>Lifestyle</p>
+                                    <p>24</p>
+                                </a>
+                            </li>
+                            <li>
+                                <a class="d-flex justify-content-between"
+                                   href="#">
+                                    <p>Fashion</p>
+                                    <p>59</p>
+                                </a>
+                            </li>
+                            <li>
+                                <a class="d-flex justify-content-between"
+                                   href="#">
+                                    <p>Art</p>
+                                    <p>29</p>
+                                </a>
+                            </li>
+                            <li>
+                                <a class="d-flex justify-content-between"
+                                   href="#">
+                                    <p>Food</p>
+                                    <p>15</p>
+                                </a>
+                            </li>
+                            <li>
+                                <a class="d-flex justify-content-between"
+                                   href="#">
+                                    <p>Architecture</p>
+                                    <p>09</p>
+                                </a>
+                            </li>
+                            <li>
+                                <a class="d-flex justify-content-between"
+                                   href="#">
+                                    <p>Adventure</p>
+                                    <p>44</p>
+                                </a>
+                            </li>
+                        </ul>
+                        <div class="br"></div>
+                    </aside>
+                    <aside class="single-sidebar-widget newsletter_widget">
+                        <h4 class="widget_title">Newsletter</h4>
+                        <p>
+                            Here, I focus on a range of items and features that
+                            we use in life without
+                            giving them a second thought.
+                        </p>
+                        <div class="form-group d-flex flex-row">
+                            <div class="input-group">
+                                <div class="input-group-prepend">
+                                    <div class="input-group-text"><i
+                                            aria-hidden="true"
+                                            class="fa fa-envelope"></i></div>
+                                </div>
+                                <input class="form-control"
+                                       id="inlineFormInputGroup"
+                                       onblur="this.placeholder = 'Enter email'"
+                                       onfocus="this.placeholder = ''"
+                                       placeholder="Enter email"
+                                       type="text">
+                            </div>
+                            <a class="bbtns" href="#">Subcribe</a>
+                        </div>
+                        <p class="text-bottom">You can unsubscribe at any
+                            time</p>
+                        <div class="br"></div>
+                    </aside>
+                    <aside class="single-sidebar-widget tag_cloud_widget">
+                        <h4 class="widget_title">Tag Clouds</h4>
+                        <ul class="list">
+                            <li><a href="#">Technology</a></li>
+                            <li><a href="#">Fashion</a></li>
+                            <li><a href="#">Architecture</a></li>
+                            <li><a href="#">Fashion</a></li>
+                            <li><a href="#">Food</a></li>
+                            <li><a href="#">Technology</a></li>
+                            <li><a href="#">Lifestyle</a></li>
+                            <li><a href="#">Art</a></li>
+                            <li><a href="#">Adventure</a></li>
+                            <li><a href="#">Food</a></li>
+                            <li><a href="#">Lifestyle</a></li>
+                            <li><a href="#">Adventure</a></li>
+                        </ul>
+                    </aside>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!--================Blog Area =================-->
+
+{% endblock body_content %}
 
 {% block meta-keywords %}{% get_tags as entry_tags %}{{ entry_tags|join:", "}}{% endblock meta-keywords %}
 
 {% block meta %}
-    <meta name="generator" content="Zinnia {{ ZINNIA_VERSION }}" />
+<meta content="Zinnia {{ ZINNIA_VERSION }}" name="generator"/>
 {% endblock meta %}
 
 {% block link %}
@@ -14,95 +306,97 @@
     <link rel="EditURI" type="application/rsd+xml" href="{% url 'zinnia:rsd' %}" />
     <link rel="wlwmanifest" type="application/wlwmanifest+xml" href="{% url 'zinnia:wlwmanifest' %}" />
     <link rel="search" type="application/opensearchdescription+xml" title="Shailesh's Weblog" href="{% url 'zinnia:opensearch' %}" />
-    <link rel="alternate" type="application/rss+xml" title="{% trans "RSS feed of last entries" %}" href="{% url 'zinnia:entry_feed' %}" />
-    <link rel="alternate" type="application/rss+xml" title="{% trans "RSS feed of last discussions" %}" href="{% url 'zinnia:discussion_feed' %}" />
+    <link rel="alternate" type="application/rss+xml" href="{% url 'zinnia:entry_feed' %}" />
+    <link rel="alternate" type="application/rss+xml" href="{% url 'zinnia:discussion_feed' %}" />
     {% get_archives_entries "zinnia/tags/entries_archives_link.html" %}
 {% endblock link %}
 
 {% block breadcrumbs %}
-  {% trans "Blog" as root_name %}
-  {% zinnia_breadcrumbs root_name %}
+{% trans "Blog" as root_name %}
+{% zinnia_breadcrumbs root_name %}
 {% endblock breadcrumbs %}
 
 {% block sidebar %}
-<aside id="widget-welcome" class="widget">
-  <h3>{% trans "Welcome to Shailesh's Blogging!" %}</h3>
-  <p>
-    {% trans "Python learning in simple way." %}
-  </p>
+<aside class="widget" id="widget-welcome">
+    <h3>{% trans "Welcome to Shailesh's Blogging!" %}</h3>
+    <p>
+        {% trans "Python learning in simple way." %}
+    </p>
 </aside>
-<aside id="widget-categories" class="widget">
-  <h3>
-    <a href="{% url 'zinnia:category_list' %}">{% trans "Categories" %}</a>
-  </h3>
-  {% get_categories %}
+<aside class="widget" id="widget-categories">
+    <h3>
+        <a href="{% url 'zinnia:category_list' %}">{% trans "Categories" %}</a>
+    </h3>
+    {% get_categories %}
 </aside>
-<aside id="widget-authors" class="widget">
-  <h3>
-    <a href="{% url 'zinnia:author_list' %}">{% trans "Authors" %}</a>
-  </h3>
-  {% get_authors %}
+<aside class="widget" id="widget-authors">
+    <h3>
+        <a href="{% url 'zinnia:author_list' %}">{% trans "Authors" %}</a>
+    </h3>
+    {% get_authors %}
 </aside>
-<aside id="widget-calendar" class="widget">
-  <h3>{% trans "Calendar" %}</h3>
-  {% get_calendar_entries %}
+<aside class="widget" id="widget-calendar">
+    <h3>{% trans "Calendar" %}</h3>
+    {% get_calendar_entries %}
 </aside>
-<aside id="widget-tags" class="widget">
-  <h3>
-    <a href="{% url 'zinnia:tag_list' %}">{% trans "Tags" %}</a>
-  </h3>
-  {% get_tag_cloud %}
+<aside class="widget" id="widget-tags">
+    <h3>
+        <a href="{% url 'zinnia:tag_list' %}">{% trans "Tags" %}</a>
+    </h3>
+    {% get_tag_cloud %}
 </aside>
-<aside id="widget-recents" class="widget">
-  <h3>{% trans "Recent entries" %}</h3>
-  {% get_recent_entries %}
+<aside class="widget" id="widget-recents">
+    <h3>{% trans "Recent entries" %}</h3>
+    {% get_recent_entries %}
 </aside>
-<aside id="widget-comments" class="widget">
-  <h3>{% trans "Recent comments" %}</h3>
-  {% get_recent_comments %}
+<aside class="widget" id="widget-comments">
+    <h3>{% trans "Recent comments" %}</h3>
+    {% get_recent_comments %}
 </aside>
-<aside id="widget-linkbacks" class="widget">
-  <h3>{% trans "Recent linkbacks" %}</h3>
-  {% get_recent_linkbacks %}
+<aside class="widget" id="widget-linkbacks">
+    <h3>{% trans "Recent linkbacks" %}</h3>
+    {% get_recent_linkbacks %}
 </aside>
-<aside id="widget-randoms" class="widget">
-  <h3>{% trans "Random entries" %}</h3>
-  {% get_random_entries %}
+<aside class="widget" id="widget-randoms">
+    <h3>{% trans "Random entries" %}</h3>
+    {% get_random_entries %}
 </aside>
-<aside id="widget-populars" class="widget">
-  <h3>{% trans "Popular entries" %}</h3>
-  {% get_popular_entries %}
+<aside class="widget" id="widget-populars">
+    <h3>{% trans "Popular entries" %}</h3>
+    {% get_popular_entries %}
 </aside>
-<aside id="widget-archives" class="widget">
-  <h3>{% trans "Archives" %}</h3>
-  {% get_archives_entries_tree %}
+<aside class="widget" id="widget-archives">
+    <h3>{% trans "Archives" %}</h3>
+    {% get_archives_entries_tree %}
 </aside>
 {% if user.is_authenticated %}
-<aside id="widget-tools" class="widget">
-  <h3>{% trans "Tools" %}</h3>
-  <ul>
-    {% if perms.zinnia %}
-    <li>
-      <a href="{% url 'admin:app_list' 'zinnia' %}" title="{% trans "Dashboard" %}">
-        {% trans "Dashboard" %}
-      </a>
-    </li>
-    {% endif %}
-    {% if perms.zinnia.add_entry %}
-    <li>
-      <a href="{% url 'admin:zinnia_entry_add' %}" title="{% trans "Post an entry" %}">
-        {% trans "Post an entry" %}
-      </a>
-    </li>
-    {% endif %}
-    {% block admin-tools %}
-    {% endblock admin-tools %}
-    <li>
-      <a href="{% url 'admin:logout' %}" title="{% trans "Log out" %}">
-        {% trans "Log out" %}
-      </a>
-    </li>
-  </ul>
+<aside class="widget" id="widget-tools">
+    <h3>{% trans "Tools" %}</h3>
+    <ul>
+        {% if perms.zinnia %}
+        <li>
+            <a Dashboard href="{% url 'admin:app_list' 'zinnia' %}"
+               title="{% trans "" %}">
+            {% trans "Dashboard" %}
+            </a>
+        </li>
+        {% endif %}
+        {% if perms.zinnia.add_entry %}
+        <li>
+            <a Post an entry
+               href="{% url 'admin:zinnia_entry_add' %}" title="{% trans "" %}">
+            {% trans "Post an entry" %}
+            </a>
+        </li>
+        {% endif %}
+        {% block admin-tools %}
+        {% endblock admin-tools %}
+        <li>
+            <a Log href="{% url 'admin:logout' %}" out title="{% trans "" %}">
+            {% trans "Log out" %}
+            </a>
+        </li>
+    </ul>
 </aside>
 {% endif %}
 {% endblock sidebar %}
