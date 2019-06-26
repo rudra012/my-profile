@@ -56,7 +56,6 @@
 {% block body-class %}entry-list{% if page_obj %} paginated page-{{ page_obj.number }}{% endif %}{% if category %} category category-{{ category.slug }}{% endif %}{% if tag %} tag tag-{{ tag|slugify }}{% endif %}{% if author %} author author-{{ author|slugify }}{% endif %}{% endblock body-class %}
 
 {% block content %}
-
 {% for object in object_list %}
 
 <article class="row blog_item">
@@ -76,22 +75,23 @@
                        title="{% blocktrans %}Show all {{ author }}'s entries{% endblocktrans %}" itemprop="url">{{ author }}</a></span>{% if not forloop.last %}, {% endif %}
                 {% endfor %}
                 <i class="lnr lnr-user"></i></a></li>
-                <li><a href="#">{{ object.publication_date|date:"M d, Y" }}<i
-                        class="lnr lnr-calendar-full"></i></a>
+                <li><a href="#">{{ object.publication_date|date:"M d, Y" }}
+                <i class="lnr lnr-calendar-full"></i></a>
                 </li>
                 <!--<li><a href="#">1.2M Views<i
                         class="lnr lnr-eye"></i></a></li>-->
-                <li><a href="#">{{ object.comment_count }} Comments<i
-                        class="lnr lnr-bubble"></i></a></li>
+                <li><a href="#">{{ object.comment_count }} Comments
+                <i class="lnr lnr-bubble"></i></a></li>
             </ul>
         </div>
     </div>
     <div class="col-md-9">
         <div class="blog_post">
-            <img alt=""
-                 src="img/blog/main-blog/m-blog-1.jpg">
+            {% if object.image %}
+            <img src="{{ object.image.url }}" alt="{{ object.image_caption|default:object.title }}" itemprop="contentUrl" style="max-height: 280px;">
+            {% endif %}
             <div class="blog_details">
-                <a href="single-blog.html">
+                <a href="{{ object.short_url }}">
                 <h2>{{ object.title }}</h2></a>
                 <p>{{ object.html_preview|safe }}</p>
                 <a class="white_bg_btn"
@@ -100,6 +100,14 @@
         </div>
     </div>
 </article>
+{% empty %}
+    <div class="">
+        <div class="blog_info text-center">
+              <p class="info">
+                No entries found.
+              </p>
+        </div>
+    </div>
 {% endfor %}
 
 {% endblock content %}

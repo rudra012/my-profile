@@ -32,23 +32,23 @@ urlpatterns = [
     path("", views.home, name="home"),
 ]
 
-blog_urls = ([
-    url(r'^', include('zinnia.urls.capabilities')),
-    url(r'^search/', include('zinnia.urls.search')),
-    url(r'^sitemap/', include('zinnia.urls.sitemap')),
-    url(r'^trackback/', include('zinnia.urls.trackback')),
-    url(r'^tags/', include('zinnia.urls.tags')),
-    url(r'^feeds/', include('zinnia.urls.feeds')),
-    url(r'^random/', include('zinnia.urls.random')),
-    url(r'^authors/', include('zinnia.urls.authors')),
-    url(r'^categories/', include('zinnia.urls.categories')),
-    url(r'^comments/', include('zinnia.urls.comments')),
-    url(r'^', include('zinnia.urls.entries')),
-    url(r'^', include('zinnia.urls.archives')),
-    url(r'^', include('zinnia.urls.shortlink')),
-    url(r'^', include('zinnia.urls.quick_entry'))
-], 'zinnia_blog')
-urlpatterns += [url(r'^blog/', include(blog_urls)),]
+# blog_urls = ([
+#     url(r'^', include('zinnia.urls.capabilities')),
+#     url(r'^search/', include('zinnia.urls.search')),
+#     url(r'^sitemap/', include('zinnia.urls.sitemap')),
+#     url(r'^trackback/', include('zinnia.urls.trackback')),
+#     url(r'^tags/', include('zinnia.urls.tags')),
+#     url(r'^feeds/', include('zinnia.urls.feeds')),
+#     url(r'^random/', include('zinnia.urls.random')),
+#     url(r'^authors/', include('zinnia.urls.authors')),
+#     url(r'^categories/', include('zinnia.urls.categories')),
+#     url(r'^comments/', include('zinnia.urls.comments')),
+#     url(r'^', include('zinnia.urls.entries')),
+#     url(r'^', include('zinnia.urls.archives')),
+#     url(r'^', include('zinnia.urls.shortlink')),
+#     url(r'^', include('zinnia.urls.quick_entry'))
+# ], 'zinnia_blog')
+urlpatterns += [url(r'^blog/', include('zinnia.urls')),]
 
 urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
