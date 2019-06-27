@@ -1,6 +1,7 @@
 {% extends "zinnia/base.html" %}
 {% load i18n %}
 {% load zinnia %}
+{% load static %}
 
 {% block meta-description %}{% spaceless %}
 {% if category %}
@@ -55,62 +56,7 @@
 
 {% block body-class %}entry-list{% if page_obj %} paginated page-{{ page_obj.number }}{% endif %}{% if category %} category category-{{ category.slug }}{% endif %}{% if tag %} tag tag-{{ tag|slugify }}{% endif %}{% if author %} author author-{{ author|slugify }}{% endif %}{% endblock body-class %}
 
-{% block content %}
-{% for object in object_list %}
 
-<article class="row blog_item">
-    <div class="col-md-3">
-        <div class="blog_info text-right">
-            <div class="post_tag">
-                <!-- <a class="active" href="#">Technology,</a> -->
-                {% for cat in object.categories.all %}
-                    <a href="#">{{ cat.title }}</a>
-                {% endfor %}
-            </div>
-            <ul class="blog_meta list">
-                <li><a href="javascript:void(0)">
-                {% for author in object.authors.all %}
-                  <span class="vcard author" itemprop="author" itemscope itemtype="http://schema.org/Person">
-                    <a href="{{ author.get_absolute_url }}" class="fn url{% if not author.get_full_name %} nickname{% endif %}" rel="author"
-                       title="{% blocktrans %}Show all {{ author }}'s entries{% endblocktrans %}" itemprop="url">{{ author }}</a></span>{% if not forloop.last %}, {% endif %}
-                {% endfor %}
-                <i class="lnr lnr-user"></i></a></li>
-                <li><a href="#">{{ object.publication_date|date:"M d, Y" }}
-                <i class="lnr lnr-calendar-full"></i></a>
-                </li>
-                <!--<li><a href="#">1.2M Views<i
-                        class="lnr lnr-eye"></i></a></li>-->
-                <li><a href="#">{{ object.comment_count }} Comments
-                <i class="lnr lnr-bubble"></i></a></li>
-            </ul>
-        </div>
-    </div>
-    <div class="col-md-9">
-        <div class="blog_post">
-            {% if object.image %}
-            <img src="{{ object.image.url }}" alt="{{ object.image_caption|default:object.title }}" itemprop="contentUrl" style="max-height: 280px;">
-            {% endif %}
-            <div class="blog_details">
-                <a href="{{ object.short_url }}">
-                <h2>{{ object.title }}</h2></a>
-                <p>{{ object.html_preview|safe }}</p>
-                <a class="white_bg_btn"
-                   href="{{ object.short_url }}">View More</a>
-            </div>
-        </div>
-    </div>
-</article>
-{% empty %}
-    <div class="">
-        <div class="blog_info text-center">
-              <p class="info">
-                No entries found.
-              </p>
-        </div>
-    </div>
-{% endfor %}
-
-{% endblock content %}
 
 {% block admin-tools %}
   {% if category and perms.zinnia.change_category %}
@@ -135,3 +81,182 @@
   </li>
   {% endif %}
 {% endblock admin-tools %}
+
+
+{% block home-banner %}
+
+<!--================Home Banner Area ================= -->
+<section class="home_banner_area blog_banner">
+    <div class="banner_inner d-flex align-items-center">
+        <div class="overlay bg-parallax" data-background=""
+             data-stellar-ratio="0.9" data-stellar-vertical-offset="0"></div>
+        <div class="container">
+            <div class="blog_b_text text-center">
+                <h2>Welcome to my blogs</h2>
+                <p>Good code is like Good joke, <br>
+                It needs no explanation</p>
+                <!--                <a class="white_bg_btn" href="#">View More</a>-->
+            </div>
+        </div>
+    </div>
+</section>
+<!--================End Home Banner Area =================-->
+{% endblock home-banner %}
+
+
+{% block blog-categories %}
+<!--================Blog Categories Area =================-->
+<section class="blog_categorie_area">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-4">
+                <div class="categories_post">
+                    <img alt="post"
+                         src="{% static 'home/img/blog/cat-post/cat-post-3.jpg' %}">
+                    <div class="categories_details">
+                        <div class="categories_text">
+                            <a href="#"><h5>Social Life</h5></a>
+                            <div class="border_line"></div>
+                            <p>Enjoy your social life together</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4">
+                <div class="categories_post">
+                    <img alt="post"
+                         src="{% static 'home/img/blog/cat-post/cat-post-2.jpg' %}">
+                    <div class="categories_details">
+                        <div class="categories_text">
+                            <a href="#"><h5>Politics</h5></a>
+                            <div class="border_line"></div>
+                            <p>Be a part of politics</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4">
+                <div class="categories_post">
+                    <img alt="post"
+                         src="{% static 'home/img/blog/cat-post/cat-post-1.jpg' %}">
+                    <div class="categories_details">
+                        <div class="categories_text">
+                            <a href="blog-details.html"><h5>Food</h5></a>
+                            <div class="border_line"></div>
+                            <p>Let the food be finished</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!--================Blog Categories Area =================-->
+{% endblock blog-categories %}
+
+
+{% block blog-area %}
+
+<!--================Blog Area =================-->
+<section class="blog_area">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8">
+                <div class="blog_left_sidebar">
+                    {% block content %}
+                    {% for object in object_list %}
+
+                    <article class="row blog_item">
+                        <div class="col-md-3">
+                            <div class="blog_info text-right">
+                                <div class="post_tag">
+                                    <!-- TODO: href <a class="active" href="#">Technology,</a> -->
+                                    {% for cat in object.categories.all %}
+                                        <a href="#">{{ cat.title }}</a>
+                                    {% endfor %}
+                                </div>
+                                <ul class="blog_meta list">
+                                    <li><a href="javascript:void(0)">
+                                    {% for author in object.authors.all %}
+                                      <span class="vcard author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+                                        <a href="{{ author.get_absolute_url }}" class="fn url{% if not author.get_full_name %} nickname{% endif %}" rel="author"
+                                           title="{% blocktrans %}Show all {{ author }}'s entries{% endblocktrans %}" itemprop="url">{{ author }}</a></span>{% if not forloop.last %}, {% endif %}
+                                    {% endfor %}
+                                    <i class="lnr lnr-user"></i></a></li>
+                                    <li><a href="#">{{ object.publication_date|date:"M d, Y" }}
+                                    <i class="lnr lnr-calendar-full"></i></a>
+                                    </li>
+                                    <!--<li><a href="#">1.2M Views<i
+                                            class="lnr lnr-eye"></i></a></li>-->
+                                    <li><a href="#">{{ object.comment_count }} Comments
+                                    <i class="lnr lnr-bubble"></i></a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="col-md-9">
+                            <div class="blog_post">
+                                {% if object.image %}
+                                <img src="{{ object.image.url }}" alt="{{ object.image_caption|default:object.title }}" itemprop="contentUrl" style="max-height: 280px;">
+                                {% endif %}
+                                <div class="blog_details">
+                                    <a href="{{ object.short_url }}">
+                                    <h2>{{ object.title }}</h2></a>
+                                    <p>{{ object.html_preview|safe }}</p>
+                                    <a class="white_bg_btn"
+                                       href="{{ object.short_url }}">View More</a>
+                                </div>
+                            </div>
+                        </div>
+                    </article>
+                    {% empty %}
+                        <div class="">
+                            <div class="blog_info text-center">
+                                  <p class="info">
+                                    No entries found.
+                                  </p>
+                            </div>
+                        </div>
+                    {% endfor %}
+
+                    {% endblock content %}
+
+                    {% block content-pagination %}
+                    {% if is_paginated %}
+                    {% zinnia_pagination page_obj %}
+                    {% endif %}
+                    {% endblock content-pagination %}
+
+                    <!--<nav class="blog-pagination justify-content-center d-flex">
+                        <ul class="pagination">
+                            <li class="page-item">
+                                <a aria-label="Previous" class="page-link"
+                                   href="#">
+		                                    <span aria-hidden="true">
+		                                        <span class="lnr lnr-chevron-left"></span>
+		                                    </span>
+                                </a>
+                            </li>
+                            <li class="page-item"><a class="page-link" href="#">01</a>
+                            </li>
+                            <li class="page-item active">
+                                <a class="page-link"href="#">02</a>
+                            </li>
+                            <li class="page-item">
+                                <a aria-label="Next" class="page-link" href="#">
+                                    <span aria-hidden="true">
+                                        <span class="lnr lnr-chevron-right"></span>
+                                    </span>
+                                </a>
+                            </li>
+                        </ul>
+                    </nav>-->
+                </div>
+            </div>
+            <div class="col-lg-4">
+                {% include 'zinnia/sidebar.html'%}
+            </div>
+        </div>
+    </div>
+</section>
+<!--================Blog Area =================-->
+{% endblock blog-area %}

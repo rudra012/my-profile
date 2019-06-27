@@ -4,240 +4,32 @@
 {% load static %}
 
 {% block body_content %}
+<style>
+    .blog_banner .banner_inner .overlay {
+        background: url({% static 'images/Shailesh-background.jpg' %}) no-repeat scroll center center;
+        opacity: .5;
+        height: 125%;
+        position: absolute;
+        left: 0px;
+        top: -245px;
+        width: 100%;
+        z-index: -1;
+    }
+    .blog_banner {
+        height: 550px;
+        min-height: 550px;
+    }
+</style>
 
-<!--================Home Banner Area =================-->
-<section class="home_banner_area blog_banner">
-    <div class="banner_inner d-flex align-items-center">
-        <div class="overlay bg-parallax" data-background=""
-             data-stellar-ratio="0.9" data-stellar-vertical-offset="0"></div>
-        <div class="container">
-            <div class="blog_b_text text-center">
-                <h2>Dude You’re Getting <br/> a Telescope</h2>
-                <p>There is a moment in the life of any aspiring astronomer that
-                    it is time to buy that first</p>
-                <!--                <a class="white_bg_btn" href="#">View More</a>-->
-            </div>
-        </div>
-    </div>
-</section>
-<!--================End Home Banner Area =================-->
+{% block home-banner %}
+{% endblock home-banner %}
 
-<!--================Blog Categories Area =================-->
-<section class="blog_categorie_area">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-4">
-                <div class="categories_post">
-                    <img alt="post"
-                         src="{% static 'home/img/blog/cat-post/cat-post-3.jpg' %}">
-                    <div class="categories_details">
-                        <div class="categories_text">
-                            <a href="#"><h5>Social Life</h5></a>
-                            <div class="border_line"></div>
-                            <p>Enjoy your social life together</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-4">
-                <div class="categories_post">
-                    <img alt="post"
-                         src="{% static 'home/img/blog/cat-post/cat-post-2.jpg' %}">
-                    <div class="categories_details">
-                        <div class="categories_text">
-                            <a href="#"><h5>Politics</h5></a>
-                            <div class="border_line"></div>
-                            <p>Be a part of politics</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-4">
-                <div class="categories_post">
-                    <img alt="post"
-                         src="{% static 'home/img/blog/cat-post/cat-post-1.jpg' %}">
-                    <div class="categories_details">
-                        <div class="categories_text">
-                            <a href="blog-details.html"><h5>Food</h5></a>
-                            <div class="border_line"></div>
-                            <p>Let the food be finished</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-<!--================Blog Categories Area =================-->
+{% block blog-categories %}
+{% endblock blog-categories %}
 
-<!--================Blog Area =================-->
-<section class="blog_area">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-8">
-                <div class="blog_left_sidebar">
-                    {% block content %}
-                    {% endblock content %}
 
-                    {% block content-pagination %}
-                    {% if is_paginated %}
-                    {% zinnia_pagination page_obj %}
-                    {% endif %}
-                    {% endblock content-pagination %}
-
-                    <!--<nav class="blog-pagination justify-content-center d-flex">
-                        <ul class="pagination">
-                            <li class="page-item">
-                                <a aria-label="Previous" class="page-link"
-                                   href="#">
-		                                    <span aria-hidden="true">
-		                                        <span class="lnr lnr-chevron-left"></span>
-		                                    </span>
-                                </a>
-                            </li>
-                            <li class="page-item"><a class="page-link" href="#">01</a>
-                            </li>
-                            <li class="page-item active">
-                                <a class="page-link"href="#">02</a>
-                            </li>
-                            <li class="page-item">
-                                <a aria-label="Next" class="page-link" href="#">
-                                    <span aria-hidden="true">
-                                        <span class="lnr lnr-chevron-right"></span>
-                                    </span>
-                                </a>
-                            </li>
-                        </ul>
-                    </nav>-->
-                </div>
-            </div>
-            <div class="col-lg-4">
-                <div class="blog_right_sidebar">
-                    <aside class="single_sidebar_widget search_widget">
-                        <div class="input-group">
-                            <form action="{% url 'zinnia:entry_search' %}"
-                                  method="get">
-                                <input %} %}value="{{ pattern }}"
-                                       class="form-control"
-                                       endif
-                                       if name="pattern" pattern
-                                       placeholder="Search Posts" type="text"
-                                       {% {%/>
-                            </form>
-                            <span class="input-group-btn">
-                                <button class="btn btn-default" type="button">
-                                    <i class="lnr lnr-magnifier"></i>
-                                </button>
-                            </span>
-                        </div>
-                        <div class="br"></div>
-                    </aside>
-                    {% for author in object.authors.all %}
-                    <aside class="single_sidebar_widget author_widget">
-                        <img alt=""
-                             class="author_img rounded-circle"
-                             src="{{ author.image }}">
-                        <h4><a href="{{ author.get_absolute_url }}">
-                            {{ author }}</a>
-                        </h4>
-                        <p>{{ author.designation }}</p>
-                        <!--<div class="social_icon">
-                            <a href="#"><i class="fa fa-facebook"></i></a>
-                            <a href="#"><i class="fa fa-twitter"></i></a>
-                            <a href="#"><i class="fa fa-github"></i></a>
-                            <a href="#"><i class="fa fa-behance"></i></a>
-                        </div>-->
-                        <p>{{ author.about }}</p>
-                        <div class="br"></div>
-                    </aside>
-                    {% endfor %}
-                    <aside class="single_sidebar_widget popular_post_widget">
-                        <h3 class="widget_title">Popular Posts</h3>
-                        <div class="media post_item">
-                            <img alt="post"
-                                 src="img/blog/popular-post/post1.jpg">
-                            <div class="media-body">
-                                <a href="blog-details.html"><h3>Space The Final
-                                    Frontier</h3></a>
-                                <p>02 Hours ago</p>
-                            </div>
-                        </div>
-                        <div class="br"></div>
-                    </aside>
-                    <!--<aside class="single_sidebar_widget ads_widget">
-                        <a href="#"><img alt=""
-                                         class="img-fluid"
-                                         src="img/blog/add.jpg"></a>
-                        <div class="br"></div>
-                    </aside>-->
-                    <aside class="single_sidebar_widget post_category_widget">
-                        <h4 class="widget_title">Post Catgories</h4>
-                        <ul class="list cat-list">
-                            <li>
-                                <a class="d-flex justify-content-between"
-                                   href="#">
-                                    <p>Technology</p>
-                                    <p>37</p>
-                                </a>
-                            </li>
-                        </ul>
-                        <div class="br"></div>
-                    </aside>
-                    <!--<aside class="single-sidebar-widget newsletter_widget">
-                        <h4 class="widget_title">Newsletter</h4>
-                        <p>
-                            Here, I focus on a range of items and features that
-                            we use in life without
-                            giving them a second thought.
-                        </p>
-                        <div class="form-group d-flex flex-row">
-                            <div class="input-group">
-                                <div class="input-group-prepend">
-                                    <div class="input-group-text"><i
-                                            aria-hidden="true"
-                                            class="fa fa-envelope"></i></div>
-                                </div>
-                                <input class="form-control"
-                                       id="inlineFormInputGroup"
-                                       onblur="this.placeholder = 'Enter email'"
-                                       onfocus="this.placeholder = ''"
-                                       placeholder="Enter email"
-                                       type="text">
-                            </div>
-                            <a class="bbtns" href="#">Subcribe</a>
-                        </div>
-                        <p class="text-bottom">You can unsubscribe at any
-                            time</p>
-                        <div class="br"></div>
-                    </aside>-->
-                    <aside class="single-sidebar-widget tag_cloud_widget">
-                        <h4 class="widget_title">Tag Clouds</h4>
-                        <ul class="list">
-                            {% for tag in object.tags_list %}
-                            <li>
-                                <meta itemprop="keywords" content="{{ object.tags }}" />
-                                <a href="{% url 'zinnia:tag_detail' tag %}"
-                                   itemprop="articleSection"
-                                   rel="tag"
-                                   title="{% blocktrans %}Show all entries tagged by {{ tag }}{% endblocktrans %}">
-                                    {{ tag }}
-                                </a>
-                            </li>
-                            {% empty %}
-                            <li>
-                                <a itemprop="articleSection">
-                                    {% trans "No tags" %}
-                                </a>
-                            </li>
-                            {% endfor %}
-                        </ul>
-                    </aside>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-<!--================Blog Area =================-->
+{% block blog-area %}
+{% endblock blog-area %}
 
 {% endblock body_content %}
 
