@@ -1,0 +1,18 @@
+{% load i18n %}
+{% load static %}
+<div class="media post_item">
+  {% for entry in entries %}
+    <img alt="post"
+         src="{% if entry.image %} {{ entry.image.url }} {% else %} {% static 'images/no-image.png' %} {% endif %}">
+    <div class="media-body">
+        <a href="{{ entry.get_absolute_url }}">
+            <h3> {{ entry.title }} </h3>
+        </a>
+        <p>02 Hours ago</p>
+    </div>
+    {% empty %}
+  <p>
+    {% trans "No entries yet." %}
+  </p>
+  {% endfor %}
+</div>

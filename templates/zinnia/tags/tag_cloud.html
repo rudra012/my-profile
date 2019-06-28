@@ -1,0 +1,18 @@
+{% load i18n %}
+<ul class="list">
+  {% for tag in tags %}
+  <li>
+      <meta itemprop="keywords" content="{{ tag }}" />
+    <a href="{% url 'zinnia:tag_detail' tag.name %}" itemprop="articleSection" rel="tag"
+       title="{% blocktrans %}Show all entries tagged by {{ tag }}{% endblocktrans %}">
+        {{ tag }}
+    </a>
+  </li>
+  {% empty %}
+  <li>
+    <a itemprop="articleSection">
+        {% trans "No tags" %}
+    </a>
+  </li>
+  {% endfor %}
+</ul>

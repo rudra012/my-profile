@@ -7,12 +7,8 @@
         <div class="input-group">
             <form action="{% url 'zinnia:entry_search' %}"
                   method="get">
-                <input %} %}value="{{ pattern }}"
-                       class="form-control"
-                       endif
-                       if name="pattern" pattern
-                       placeholder="Search Posts" type="text"
-                       {% {%/>
+                <input name="pattern" value="{{ pattern }}" class="form-control"
+                       type="text" required placeholder="Search Posts"/>
             </form>
             <span class="input-group-btn">
                 <button class="btn btn-default" type="button">
@@ -22,6 +18,8 @@
         </div>
         <div class="br"></div>
     </aside>
+
+    <!--  This blog author details  -->
     {% for author in object.authors.all %}
     <aside class="single_sidebar_widget author_widget">
         <img alt=""
@@ -41,17 +39,24 @@
         <div class="br"></div>
     </aside>
     {% endfor %}
+
+    <!--  All Other authors  -->
+    <aside class="single_sidebar_widget author_widget">
+        <h3 class="widget_title">Authors</h3>
+          {% get_authors %}
+        <div class="br"></div>
+    </aside>
+
+    <!-- Calender UI need to improve
+    <aside class="single_sidebar_widget calendar_widget">
+        <h3 class="widget_title">Calender</h3>
+          {% get_calendar_entries %}
+        <div class="br"></div>
+    </aside> -->
+
     <aside class="single_sidebar_widget popular_post_widget">
         <h3 class="widget_title">Popular Posts</h3>
-        <div class="media post_item">
-            <img alt="post"
-                 src="img/blog/popular-post/post1.jpg">
-            <div class="media-body">
-                <a href="blog-details.html"><h3>Space The Final
-                    Frontier</h3></a>
-                <p>02 Hours ago</p>
-            </div>
-        </div>
+          {% get_popular_entries %}
         <div class="br"></div>
     </aside>
     <!--<aside class="single_sidebar_widget ads_widget">
@@ -62,15 +67,7 @@
     </aside>-->
     <aside class="single_sidebar_widget post_category_widget">
         <h4 class="widget_title">Post Catgories</h4>
-        <ul class="list cat-list">
-            <li>
-                <a class="d-flex justify-content-between"
-                   href="#">
-                    <p>Technology</p>
-                    <p>37</p>
-                </a>
-            </li>
-        </ul>
+        {% get_categories %}
         <div class="br"></div>
     </aside>
     <!--<aside class="single-sidebar-widget newsletter_widget">
@@ -101,25 +98,12 @@
         <div class="br"></div>
     </aside>-->
     <aside class="single-sidebar-widget tag_cloud_widget">
-        <h4 class="widget_title">Tag Clouds</h4>
-        <ul class="list">
-            {% for tag in object.tags_list %}
-            <li>
-                <meta itemprop="keywords" content="{{ object.tags }}" />
-                <a href="{% url 'zinnia:tag_detail' tag %}"
-                   itemprop="articleSection"
-                   rel="tag"
-                   title="{% blocktrans %}Show all entries tagged by {{ tag }}{% endblocktrans %}">
-                    {{ tag }}
-                </a>
-            </li>
-            {% empty %}
-            <li>
-                <a itemprop="articleSection">
-                    {% trans "No tags" %}
-                </a>
-            </li>
-            {% endfor %}
-        </ul>
+        <h4 class="widget_title">Tags</h4>
+        {% get_tag_cloud %}
+        <div class="br"></div>
+    </aside>
+    <aside class="single-sidebar-widget archives_widget">
+        <h4 class="widget_title">Archives</h4>
+        {% get_archives_entries_tree %}
     </aside>
 </div>
